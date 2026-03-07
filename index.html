@@ -276,6 +276,7 @@
     .b-mobile { background: rgba(52,211,153,0.08);  color: #6ee7b7;      border: 1px solid rgba(52,211,153,0.18); }
     .b-bi     { background: rgba(251,191,36,0.08);  color: #fcd34d;      border: 1px solid rgba(251,191,36,0.18); }
     .b-erp    { background: rgba(248,113,113,0.08); color: #fca5a5;      border: 1px solid rgba(248,113,113,0.18);}
+    .b-cv     { background: rgba(34,211,238,0.07);  color: #5eead4;      border: 1px solid rgba(34,211,238,0.22); }
     .proj-desc { color: var(--muted); font-size: 0.875rem; margin-bottom: 14px; line-height: 1.7; }
     .proj-list { margin: 0 0 16px 15px; }
     .proj-list li { color: var(--muted2); font-size: 0.86rem; margin-bottom: 5px; }
@@ -360,51 +361,84 @@
     .btn-cv-full svg { width: 13px; height: 13px; }
 
     /* MODAL */
+    /* CV MODAL — full viewer */
     .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.72); backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.82); backdrop-filter: blur(12px);
       align-items: center; justify-content: center;
+      padding: 20px;
     }
     .modal-overlay.open { display: flex; }
     .modal {
       background: var(--bg2); border: 1px solid rgba(34,211,238,0.16);
-      border-radius: 20px; padding: 32px; max-width: 460px; width: 90%;
-      position: relative;
+      border-radius: 20px; width: 100%; max-width: 860px;
+      height: 90vh; max-height: 920px;
+      position: relative; display: flex; flex-direction: column;
       animation: modal-pop 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
     }
     @keyframes modal-pop {
-      from { opacity: 0; transform: scale(0.9) translateY(14px); }
+      from { opacity: 0; transform: scale(0.94) translateY(16px); }
       to   { opacity: 1; transform: scale(1) translateY(0); }
     }
+
+    /* Modal top bar */
+    .modal-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px; border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .modal-bar-left { display: flex; align-items: center; gap: 10px; }
+    .modal-bar-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      background: rgba(248,113,113,0.1); color: #fca5a5;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-bar-icon svg { width: 16px; height: 16px; }
+    .modal-bar-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+    .modal-bar-sub { font-size: 0.78rem; color: var(--muted); margin-top: 1px; }
+    .modal-bar-actions { display: flex; gap: 8px; align-items: center; }
+    .modal-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 8px; font-size: 0.82rem; font-weight: 500;
+      cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s;
+    }
+    .modal-btn-dl {
+      background: var(--cyan); color: #080d14; border: none;
+    }
+    .modal-btn-dl:hover { background: var(--cyan2); }
+    .modal-btn-dl svg { width: 13px; height: 13px; }
     .modal-x {
-      position: absolute; top: 14px; right: 14px;
-      width: 29px; height: 29px; border-radius: 7px;
+      width: 30px; height: 30px; border-radius: 8px;
       background: var(--surface); border: 1px solid var(--border);
       display: flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--muted); font-size: 0.88rem;
-      transition: all 0.18s;
+      cursor: pointer; color: var(--muted); font-size: 0.9rem;
+      transition: all 0.18s; flex-shrink: 0;
     }
-    .modal-x:hover { color: var(--text); }
-    .modal h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
-    .modal p { color: var(--muted); font-size: 0.85rem; margin-bottom: 20px; }
-    .modal-opts { display: grid; gap: 10px; }
-    .m-opt {
-      display: flex; align-items: center; gap: 14px;
-      padding: 15px 18px; border-radius: 12px;
-      background: var(--surface); border: 1px solid var(--border);
-      cursor: pointer; transition: all 0.2s ease;
+    .modal-x:hover { color: var(--text); background: var(--bg3); }
+
+    /* PDF iframe */
+    .modal-pdf-wrap {
+      flex: 1; position: relative; background: #1a1a1a;
+      overflow: hidden;
     }
-    .m-opt:hover { border-color: rgba(34,211,238,0.28); transform: translateX(3px); }
-    .m-icon {
-      width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+    .modal-pdf-wrap iframe {
+      width: 100%; height: 100%; border: none; display: block;
     }
-    .m-icon svg { width: 18px; height: 18px; }
-    .mi-pdf { background: rgba(248,113,113,0.1); color: #fca5a5; }
-    .mi-web { background: rgba(34,211,238,0.08); color: var(--cyan2); }
-    .m-title { font-weight: 500; font-size: 0.9rem; margin-bottom: 2px; }
-    .m-sub   { font-size: 0.78rem; color: var(--muted); }
-    .m-arr   { margin-left: auto; color: var(--muted); font-size: 0.85rem; }
+    .modal-pdf-loader {
+      position: absolute; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+      background: var(--bg3); z-index: 1; transition: opacity 0.3s;
+    }
+    .modal-pdf-loader.hidden { opacity: 0; pointer-events: none; }
+    .loader-spin {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 3px solid var(--border);
+      border-top-color: var(--cyan);
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text { font-size: 0.83rem; color: var(--muted); }
 
     /* FOOTER */
     footer { margin-top: 80px; padding: 34px 0; border-top: 1px solid var(--border); position: relative; z-index: 1; }
@@ -511,42 +545,47 @@
   <div class="ambient-1"></div>
   <div class="ambient-2"></div>
 
-  <!-- MODAL -->
+  <!-- CV MODAL — PDF VIEWER -->
   <div class="modal-overlay" id="cvModal">
     <div class="modal">
-      <button class="modal-x" onclick="closeModal()">✕</button>
-      <h3>Curriculum Vitae</h3>
-      <p>Téléchargez ou consultez le CV complet de Zakaria Rebbah.</p>
-      <div class="modal-opts">
-        <div class="m-opt" onclick="window.open('https://raw.githubusercontent.com/Zakaria-reb/Zakaria-reb.github.io/main/cv_zr.pdf','_blank')">
-          <div class="m-icon mi-pdf">
+      <!-- Top bar -->
+      <div class="modal-bar">
+        <div class="modal-bar-left">
+          <div class="modal-bar-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
             </svg>
           </div>
           <div>
-            <div class="m-title">Télécharger en PDF</div>
-            <div class="m-sub">Format A4 — Mis à jour 2025</div>
+            <div class="modal-bar-title">CV — Zakaria Rebbah</div>
+            <div class="modal-bar-sub">AI Engineer &amp; Full-Stack Developer</div>
           </div>
-          <div class="m-arr">↓</div>
         </div>
-        <div class="m-opt" onclick="window.open('https://linkedin.com/in/zakaria-rebbah','_blank')">
-          <div class="m-icon mi-web">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        <div class="modal-bar-actions">
+          <a class="modal-btn modal-btn-dl" href="https://raw.githubusercontent.com/Zakaria-reb/Zakaria-reb.github.io/main/cv_zr.pdf" download="CV_Zakaria_Rebbah.pdf" target="_blank">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7,10 12,15 17,10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-          </div>
-          <div>
-            <div class="m-title">Voir sur LinkedIn</div>
-            <div class="m-sub">Profil complet et recommandations</div>
-          </div>
-          <div class="m-arr">→</div>
+            Télécharger
+          </a>
+          <button class="modal-x" onclick="closeModal()">✕</button>
         </div>
+      </div>
+      <!-- PDF iframe viewer -->
+      <div class="modal-pdf-wrap">
+        <div class="modal-pdf-loader" id="pdfLoader">
+          <div class="loader-spin"></div>
+          <div class="loader-text">Chargement du CV...</div>
+        </div>
+        <iframe
+          id="cvIframe"
+          src="https://drive.google.com/file/d/1iZ_E6E2Ab4d3T9fENZRN0McO2HM5lsqe/preview"
+          allowfullscreen
+          onload="document.getElementById('pdfLoader').classList.add('hidden')"
+        ></iframe>
       </div>
     </div>
   </div>
@@ -585,7 +624,7 @@
         <div>
           <div class="eyebrow fade d1">
             <span class="eyebrow-bar"></span>
-            AI Engineer &amp; Full-Stack Developer
+            AI · Data · Computer Vision · Full-Stack
           </div>
           <h1 class="hero-name fade d2">
             <span class="n1">Zakaria</span>
@@ -593,7 +632,8 @@
           </h1>
           <div class="role-tags fade d2">
             <span class="rtag rtag-main">Intelligence Artificielle</span>
-            <span class="rtag">Data Science</span>
+            <span class="rtag">Computer Vision</span>
+            <span class="rtag">Data Science · BI</span>
             <span class="rtag">Full-Stack Dev</span>
           </div>
           <p class="hero-desc fade d3">
@@ -633,7 +673,7 @@
             <span class="hi-sep">·</span>
             <span class="hi-item">ENSA El Jadida</span>
             <span class="hi-sep">·</span>
-            <a href="mailto:Zakaria.Rebbah3@gmail.com" class="hi-item hi-link">Zakaria.Rebbah3@gmail.com</a>
+            <a href="/cdn-cgi/l/email-protection#411b202a203328206f1324232320297201262c20282d6f222e2c" class="hi-item hi-link"><span class="__cf_email__" data-cfemail="29734842485b4048077b4c4b4b48411a694e44484045074a4644">[email&#160;protected]</span></a>
           </div>
         </div>
 
@@ -664,23 +704,23 @@
       </div>
       <div class="about-grid">
         <div class="card about-text">
-          <p>Étudiant en <strong>Informatique et Technologies Émergentes</strong> à l'ENSA El Jadida, je suis passionné par l'<strong>Intelligence Artificielle, la Data Science et le développement full-stack</strong>. J'aime transformer des idées en solutions digitales complètes — robustes, utiles et techniquement solides.</p>
-          <p>Mes projets couvrent des systèmes de recommandation, assistants IA RAG/LangChain, plateformes analytics, applications mobiles et logiciels métier. J'apprécie les projets où <strong>données, machine learning, architecture backend et expérience utilisateur</strong> convergent pour résoudre de vrais problèmes.</p>
-          <p>Mon ambition est de devenir un <strong>AI Engineer à fort impact</strong>, capable de concevoir des systèmes end-to-end — des pipelines de données aux interfaces modernes et architectures sécurisées déployables en production.</p>
+          <p>Étudiant en <strong>Informatique et Technologies Émergentes</strong> à l'ENSA El Jadida, je suis passionné par l'ensemble du spectre de la donnée et de l'intelligence artificielle — de la <strong>Computer Vision et du Machine Learning</strong> à la <strong>Business Intelligence, la Data Science et le développement full-stack</strong>.</p>
+          <p>Mes projets reflètent cette diversité : détection d'infractions routières par vision par ordinateur, assistants IA RAG/LangChain, moteurs de recommandation, plateformes analytics BI, applications mobiles et SaaS. J'apprécie les projets où <strong>données, modèles ML, architecture backend et expérience utilisateur</strong> convergent pour résoudre de vrais problèmes à impact.</p>
+          <p>Mon ambition est de devenir un <strong>AI/Data Engineer polyvalent et à fort impact</strong>, capable de couvrir l'ensemble de la chaîne — collecte de données, pipelines ETL, modèles ML/DL, visualisation BI, et déploiement en production.</p>
         </div>
         <div class="card">
           <div class="pillars">
             <div class="pillar">
               <strong>Ce que je construis</strong>
-              <span>Applications IA, plateformes analytics, systèmes métier, produits web et mobile complets.</span>
+              <span>Systèmes CV/ML, assistants IA, plateformes BI, apps full-stack web &amp; mobile.</span>
             </div>
             <div class="pillar">
               <strong>Ce qui me passionne</strong>
-              <span>Combiner ML, architecture backend solide et expériences utilisateur soignées.</span>
+              <span>Vision par ordinateur, LLM/RAG, data engineering et BI — toujours orienté impact réel.</span>
             </div>
             <div class="pillar">
               <strong>Direction actuelle</strong>
-              <span>AI engineering, data science appliquée, assistants intelligents, architecture scalable.</span>
+              <span>AI/Data Engineer : Computer Vision, Deep Learning, pipelines ETL, analytics &amp; déploiement.</span>
             </div>
           </div>
         </div>
@@ -712,8 +752,10 @@
         <div class="skill-card">
           <div class="skill-cat">IA, Data &amp; BI</div>
           <div class="chips">
-            <span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">LangChain</span>
-            <span class="chip">OpenAI</span><span class="chip">Talend</span><span class="chip">Power BI</span>
+            <span class="chip">Machine Learning</span><span class="chip">Deep Learning</span>
+            <span class="chip">Computer Vision</span><span class="chip">OpenCV</span><span class="chip">YOLO</span>
+            <span class="chip">LangChain</span><span class="chip">OpenAI</span>
+            <span class="chip">Talend</span><span class="chip">Power BI</span>
             <span class="chip">Data Warehousing</span><span class="chip">OLAP</span>
           </div>
         </div>
@@ -808,6 +850,24 @@
           </ul>
           <div class="tc-row">
             <span class="tc">Odoo 17</span><span class="tc">Inventaire</span><span class="tc">Ventes</span><span class="tc">CRM</span><span class="tc">Comptabilité</span>
+          </div>
+        </article>
+
+        <article class="proj" style="grid-column: 1 / -1;">
+          <div class="proj-head">
+            <h3>Prévention des Infractions &amp; Accidents Routiers</h3>
+            <span class="badge b-cv">Computer Vision · ML</span>
+          </div>
+          <p class="proj-desc">Système intelligent de prévention des infractions et accidents routiers basé sur la vision par ordinateur et le Machine Learning — analyse en temps réel de flux vidéo pour détecter comportements à risque et infractions courantes (excès de vitesse, non-respect des feux, franchissement de ligne, etc.).</p>
+          <ul class="proj-list">
+            <li>Analyse automatique et temps réel d'images et vidéos routières pour la détection d'objets et de comportements à risque.</li>
+            <li>Modèles ML de reconnaissance de formes et d'objets routiers (véhicules, panneaux, feux, marquages).</li>
+            <li>Pipeline de traitement vidéo avec détection d'infractions et génération d'alertes automatiques.</li>
+            <li>Classification des situations dangereuses et scoring de risque en temps réel.</li>
+          </ul>
+          <div class="tc-row">
+            <span class="tc">Python</span><span class="tc">Computer Vision</span><span class="tc">OpenCV</span>
+            <span class="tc">YOLO</span><span class="tc">Machine Learning</span><span class="tc">Deep Learning</span><span class="tc">TensorFlow</span>
           </div>
         </article>
       </div>
@@ -970,7 +1030,7 @@
             <div class="ca-headline">Prêt pour de nouveaux défis</div>
             <p class="ca-text">Je recherche des projets où l'IA et le génie logiciel créent un réel impact. N'hésitez pas à me contacter.</p>
           </div>
-          <button class="btn-cv-full" onclick="window.open('https://raw.githubusercontent.com/Zakaria-reb/Zakaria-reb.github.io/main/cv_zr.pdf','_blank')">
+          <button class="btn-cv-full" onclick="openModal()">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
@@ -993,8 +1053,4 @@
         <a href="https://github.com/Zakaria-reb" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/zakaria-rebbah" target="_blank">LinkedIn</a>
         <a href="/cdn-cgi/l/email-protection#adf7ccc6ccdfc4cc83ffc8cfcfccc59eedcac0ccc4c183cec2c0">Email</a>
-      </div>
-    </div>
-  </footer>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+      </d
