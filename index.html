@@ -1,1083 +1,935 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zakaria Rebbah | Portfolio</title>
-  <meta
-    name="description"
-    content="Zakaria Rebbah - AI Engineer, Data Science enthusiast, and Full-Stack Developer building intelligent systems and scalable digital products."
-  />
+  <title>Zakaria Rebbah — AI Engineer & Full-Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b1120;
-      --bg-soft: #111827;
-      --card: rgba(15, 23, 42, 0.82);
-      --card-2: rgba(17, 24, 39, 0.92);
-      --text: #e5eefc;
-      --muted: #94a3b8;
-      --line: rgba(148, 163, 184, 0.16);
-      --primary: #38bdf8;
-      --primary-2: #22d3ee;
-      --accent: #8b5cf6;
-      --success: #34d399;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-      --radius: 22px;
-      --radius-sm: 14px;
-      --max: 1180px;
+      --bg:        #080d14;
+      --bg2:       #0c1220;
+      --bg3:       #101828;
+      --surface:   #131e2e;
+      --border:    rgba(255,255,255,0.065);
+      --border2:   rgba(255,255,255,0.04);
+      --text:      #e8f0fa;
+      --muted:     #5a6a88;
+      --muted2:    #8496b4;
+      --cyan:      #22d3ee;
+      --cyan2:     #67e8f9;
+      --cyan-dim:  rgba(34,211,238,0.08);
+      --max:       1120px;
+      --radius:    16px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 28%),
-        radial-gradient(circle at top right, rgba(139, 92, 246, 0.14), transparent 26%),
-        linear-gradient(180deg, #07101f 0%, #0b1120 45%, #090f1c 100%);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a { color: inherit; text-decoration: none; }
+
+    .ambient-1 {
+      position: fixed; pointer-events: none; z-index: 0;
+      top: -300px; left: -200px; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(34,211,238,0.05) 0%, transparent 65%);
+    }
+    .ambient-2 {
+      position: fixed; pointer-events: none; z-index: 0;
+      bottom: -200px; right: -150px; width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(34,211,238,0.03) 0%, transparent 65%);
     }
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
-    .blur {
-      position: fixed;
-      inset: auto auto 10% -80px;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(56, 189, 248, 0.13);
-      filter: blur(60px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .blur-2 {
-      position: fixed;
-      inset: 14% -80px auto auto;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: rgba(139, 92, 246, 0.14);
-      filter: blur(70px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
+    /* NAV */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(14px);
-      background: rgba(6, 11, 24, 0.72);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,13,20,0.88);
+      backdrop-filter: blur(20px) saturate(160%);
     }
-
     .nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; gap: 20px;
     }
+    .brand { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; }
+    .brand-accent { color: var(--cyan); }
 
-    .brand {
-      font-weight: 800;
-      letter-spacing: 0.4px;
-      font-size: 1.05rem;
-    }
-
-    .brand span {
-      color: var(--primary);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
+    .nav-links { display: flex; gap: 26px; align-items: center; }
     .nav-links a {
-      color: var(--muted);
-      font-size: 0.96rem;
-      transition: 0.2s ease;
+      font-size: 0.875rem; color: var(--muted2); font-weight: 400;
+      transition: color 0.18s; position: relative;
     }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 1px; background: var(--cyan); transition: width 0.22s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
 
-    .nav-links a:hover {
-      color: var(--text);
+    .btn-cv {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      border: 1px solid rgba(34,211,238,0.3);
+      background: rgba(34,211,238,0.06);
+      color: var(--cyan2); cursor: pointer;
+      transition: all 0.22s ease;
     }
+    .btn-cv:hover { background: rgba(34,211,238,0.12); border-color: rgba(34,211,238,0.55); transform: translateY(-1px); }
+    .btn-cv svg { width: 13px; height: 13px; }
 
-    .hero {
-      position: relative;
-      z-index: 1;
-      padding: 86px 0 48px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .hero-card,
-    .glass,
-    .timeline-item,
-    .project-card,
-    .skill-box,
-    .contact-card,
-    .edu-card,
-    .cert-card {
-      background: linear-gradient(180deg, rgba(17, 24, 39, 0.9), rgba(15, 23, 42, 0.78));
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-    }
-
-    .hero-card {
-      padding: 34px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -30px -30px auto;
-      width: 180px;
-      height: 180px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 65%);
-      border-radius: 50%;
-    }
+    /* HERO */
+    .hero { position: relative; z-index: 1; padding: 92px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 370px; gap: 44px; align-items: start; }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.2);
-      background: rgba(56, 189, 248, 0.08);
-      color: #b8e9fb;
-      font-size: 0.9rem;
-      margin-bottom: 18px;
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.72rem; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--cyan); font-weight: 500; margin-bottom: 26px;
     }
+    .eyebrow-bar { width: 22px; height: 1px; background: var(--cyan); opacity: 0.7; }
 
-    h1 {
-      font-size: clamp(2.2rem, 4vw, 4.3rem);
-      line-height: 1.08;
-      margin-bottom: 14px;
-      letter-spacing: -1.8px;
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 800; line-height: 0.92;
+      letter-spacing: -2.5px; margin-bottom: 20px;
     }
+    .hero-name .n1 { display: block; color: var(--text); }
+    .hero-name .n2 {
+      display: block;
+      background: linear-gradient(90deg, var(--cyan) 0%, var(--cyan2) 50%, var(--cyan) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: sweep 5s linear infinite;
+    }
+    @keyframes sweep { to { background-position: 200% center; } }
 
-    .gradient {
-      background: linear-gradient(90deg, #ffffff 0%, #dbeafe 28%, #7dd3fc 65%, #67e8f9 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .role-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .rtag {
+      padding: 5px 13px; border-radius: 5px; font-size: 0.8rem; font-weight: 400;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      color: var(--muted2);
     }
+    .rtag-main { background: var(--cyan-dim); border-color: rgba(34,211,238,0.2); color: var(--cyan2); }
 
-    .subtitle {
-      font-size: 1.15rem;
-      color: #c7d2fe;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
+    .hero-desc { color: var(--muted2); font-size: 1rem; max-width: 50ch; line-height: 1.8; margin-bottom: 34px; }
+    .hero-desc strong { color: var(--text); font-weight: 500; }
 
-    .hero p {
-      color: var(--muted);
-      max-width: 60ch;
-    }
-
-    .cta {
-      margin-top: 24px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: 1px solid var(--line);
-      font-weight: 600;
-      transition: 0.22s ease;
-    }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: #07101f;
-      border: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 11px 22px; border-radius: 9px; font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; border: none; background: var(--cyan); color: #080d14;
+      transition: all 0.22s ease;
+    }
+    .btn-primary:hover { background: var(--cyan2); transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 11px 20px; border-radius: 9px; font-size: 0.9rem; font-weight: 400;
+      cursor: pointer; border: 1px solid var(--border); background: transparent;
+      color: var(--muted2); transition: all 0.2s ease;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.13); color: var(--text); }
+    .btn-outline svg { width: 13px; height: 13px; }
+
+    /* HERO PANEL */
+    .hero-panel { display: flex; flex-direction: column; gap: 12px; }
+    .panel {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px; position: relative;
+    }
+    .panel::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      border-radius: var(--radius) var(--radius) 0 0;
+      background: linear-gradient(90deg, transparent, rgba(34,211,238,0.1), transparent);
+    }
+    .stats-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-box {
+      padding: 14px; border-radius: 10px;
+      background: var(--bg3); border: 1px solid var(--border2);
+    }
+    .stat-n { font-family: 'Syne', sans-serif; font-size: 1.65rem; font-weight: 700; color: var(--cyan); line-height: 1; margin-bottom: 4px; }
+    .stat-l { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+
+    .avail {
+      display: flex; align-items: center; gap: 9px;
+      padding: 10px 14px; border-radius: 9px;
+      background: rgba(34,211,238,0.05);
+      border: 1px solid rgba(34,211,238,0.18);
+      font-size: 0.84rem; font-weight: 500; color: var(--cyan2);
+    }
+    .avail-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(34,211,238,0.7);
+      animation: blink 2.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    .info-list { display: grid; }
+    .info-row {
+      display: flex; justify-content: space-between; gap: 12px;
+      padding: 9px 0; border-bottom: 1px solid var(--border2); font-size: 0.85rem;
+    }
+    .info-row:last-child { border-bottom: none; }
+    .lk { color: var(--muted); }
+    .lv { color: var(--muted2); text-align: right; }
+
+    /* SECTIONS */
+    section { position: relative; z-index: 1; padding: 80px 0 0; }
+    .sec-eyebrow {
+      font-size: 0.7rem; letter-spacing: 2.8px; text-transform: uppercase;
+      color: var(--cyan); font-weight: 500; margin-bottom: 10px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .sec-eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--cyan); }
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700; letter-spacing: -1.2px; line-height: 1.06; margin-bottom: 10px;
+    }
+    .sec-sub { color: var(--muted); font-size: 0.93rem; max-width: 58ch; }
+    .sec-head { margin-bottom: 36px; }
+
+    /* CARD */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 26px; position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(34,211,238,0.09), transparent);
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.05);
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 16px; }
+    .about-text p { color: var(--muted2); }
+    .about-text p + p { margin-top: 13px; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+    .pillars { display: grid; gap: 10px; }
+    .pillar {
+      padding: 16px 18px; border-radius: 11px;
+      background: var(--bg3); border: 1px solid var(--border2);
+      border-left: 2px solid var(--cyan);
+      transition: transform 0.2s ease;
     }
+    .pillar:hover { transform: translateX(3px); }
+    .pillar strong { display: block; font-size: 0.88rem; color: var(--text); font-weight: 500; margin-bottom: 4px; }
+    .pillar span { font-size: 0.83rem; color: var(--muted); }
 
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px;
+      transition: border-color 0.25s, transform 0.25s;
     }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.06);
-      transform: translateY(-2px);
+    .skill-card:hover { border-color: rgba(34,211,238,0.2); transform: translateY(-3px); }
+    .skill-cat {
+      font-family: 'Syne', sans-serif; font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.2px; color: var(--cyan); margin-bottom: 14px;
     }
-
-    .hero-side {
-      display: grid;
-      gap: 18px;
-    }
-
-    .glass {
-      padding: 24px;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .stat {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .stat h3 {
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .stat p {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .quick-info {
-      display: grid;
-      gap: 12px;
-    }
-
-    .quick-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
-    }
-
-    .quick-row:last-child {
-      border-bottom: none;
-    }
-
-    .quick-row span:first-child {
-      color: var(--muted);
-    }
-
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 26px 0 0;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 18px;
-    }
-
-    .section-title h2 {
-      font-size: clamp(1.5rem, 3vw, 2.1rem);
-      letter-spacing: -0.7px;
-    }
-
-    .section-title p {
-      color: var(--muted);
-      max-width: 62ch;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 22px;
-    }
-
-    .about .glass {
-      padding: 28px;
-    }
-
-    .about p + p {
-      margin-top: 14px;
-    }
-
-    .highlights {
-      display: grid;
-      gap: 14px;
-    }
-
-    .highlight {
-      padding: 16px 18px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .highlight strong {
-      color: #e0f2fe;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .skill-box {
-      padding: 22px;
-    }
-
-    .skill-box h3 {
-      margin-bottom: 14px;
-      color: #dbeafe;
-      font-size: 1.05rem;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
+    .chips { display: flex; flex-wrap: wrap; gap: 7px; }
     .chip {
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.15);
-      color: #d9f5ff;
-      font-size: 0.9rem;
+      padding: 5px 11px; border-radius: 5px; font-size: 0.8rem;
+      background: var(--bg3); border: 1px solid var(--border2);
+      color: var(--muted2); transition: all 0.18s;
     }
+    .chip:hover { border-color: rgba(34,211,238,0.25); color: var(--cyan2); }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .proj {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 26px;
+      transition: all 0.28s; position: relative; overflow: hidden;
     }
-
-    .project-card {
-      padding: 24px;
-      transition: 0.25s ease;
+    .proj::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0; transition: opacity 0.28s;
     }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(56, 189, 248, 0.22);
+    .proj:hover { border-color: rgba(34,211,238,0.18); transform: translateY(-5px); }
+    .proj:hover::after { opacity: 1; }
+    .proj-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 12px; }
+    .proj-head h3 { font-family: 'Syne', sans-serif; font-size: 1.05rem; font-weight: 700; }
+    .badge {
+      font-size: 0.7rem; padding: 4px 9px; border-radius: 5px;
+      text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500;
+      white-space: nowrap; flex-shrink: 0;
     }
+    .b-saas   { background: rgba(34,211,238,0.08);  color: var(--cyan2); border: 1px solid rgba(34,211,238,0.18); }
+    .b-ai     { background: rgba(99,102,241,0.1);   color: #a5b4fc;      border: 1px solid rgba(99,102,241,0.2);  }
+    .b-mobile { background: rgba(52,211,153,0.08);  color: #6ee7b7;      border: 1px solid rgba(52,211,153,0.18); }
+    .b-bi     { background: rgba(251,191,36,0.08);  color: #fcd34d;      border: 1px solid rgba(251,191,36,0.18); }
+    .b-erp    { background: rgba(248,113,113,0.08); color: #fca5a5;      border: 1px solid rgba(248,113,113,0.18);}
+    .proj-desc { color: var(--muted); font-size: 0.875rem; margin-bottom: 14px; line-height: 1.7; }
+    .proj-list { margin: 0 0 16px 15px; }
+    .proj-list li { color: var(--muted2); font-size: 0.86rem; margin-bottom: 5px; }
+    .proj-list li::marker { color: var(--cyan); }
+    .tc-row { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tc { padding: 4px 9px; border-radius: 4px; font-size: 0.77rem; background: var(--bg3); border: 1px solid var(--border2); color: var(--muted); }
 
-    .project-top {
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 10px;
+    /* TIMELINE */
+    .tl-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 28px; position: relative; overflow: hidden;
     }
-
-    .project-top h3 {
-      font-size: 1.15rem;
+    .tl-card::before {
+      content: ''; position: absolute; left: 0; top: 28px; bottom: 28px;
+      width: 2px; border-radius: 2px;
+      background: linear-gradient(180deg, var(--cyan), transparent);
     }
-
-    .project-label {
-      font-size: 0.78rem;
-      padding: 6px 10px;
-      border-radius: 999px;
-      color: #dff7ff;
-      border: 1px solid rgba(52, 211, 153, 0.22);
-      background: rgba(52, 211, 153, 0.08);
-      white-space: nowrap;
+    .tl-inner { padding-left: 20px; }
+    .tl-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 6px; }
+    .tl-top h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; }
+    .tl-date {
+      padding: 6px 13px; border-radius: 7px; font-size: 0.8rem; white-space: nowrap;
+      background: rgba(34,211,238,0.06); border: 1px solid rgba(34,211,238,0.18);
+      color: var(--cyan); font-weight: 500;
     }
+    .tl-company { color: var(--muted); font-size: 0.875rem; margin-bottom: 16px; }
+    .tl-company strong { color: var(--cyan2); font-weight: 500; }
+    .tl-list { margin-left: 15px; }
+    .tl-list li { color: var(--muted2); font-size: 0.9rem; margin-bottom: 8px; }
+    .tl-list li::marker { color: var(--cyan); }
+    .tl-list strong { color: var(--text); font-weight: 500; }
 
-    .project-card p {
-      color: var(--muted);
-      margin-bottom: 16px;
+    /* EDUCATION */
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sub-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text); margin-bottom: 14px; }
+    .edu-list { display: grid; gap: 10px; }
+    .edu-item { padding: 15px 18px; border-radius: 11px; background: var(--bg3); border: 1px solid var(--border2); }
+    .edu-item strong { display: block; font-size: 0.87rem; color: var(--text); font-weight: 500; margin-bottom: 5px; }
+    .edu-item span { font-size: 0.81rem; color: var(--muted); }
+    .cert-org { font-size: 0.75rem; color: var(--cyan); font-weight: 500; margin-top: 3px; display: block; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 16px; }
+    .contact-head { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 6px; }
+    .contact-sub { color: var(--muted); font-size: 0.875rem; margin-bottom: 20px; }
+    .c-list { display: grid; gap: 10px; }
+    .c-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 13px 16px; border-radius: 11px;
+      background: var(--bg3); border: 1px solid var(--border2);
+      transition: all 0.2s ease;
     }
-
-    .project-list {
-      margin: 14px 0 16px 18px;
-      color: #dbeafe;
+    .c-item:hover { border-color: rgba(34,211,238,0.2); transform: translateX(3px); }
+    .c-icon {
+      width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
     }
+    .c-icon svg { width: 16px; height: 16px; }
+    .icon-email { background: rgba(34,211,238,0.08); color: var(--cyan); }
+    .icon-gh    { background: rgba(255,255,255,0.05); color: var(--muted2); }
+    .icon-li    { background: rgba(34,211,238,0.08); color: var(--cyan); }
+    .c-lbl { font-size: 0.75rem; color: var(--muted); margin-bottom: 2px; }
+    .c-val { font-size: 0.875rem; color: var(--muted2); }
+    .c-val a { transition: color 0.18s; }
+    .c-val a:hover { color: var(--cyan2); }
 
-    .project-list li + li {
-      margin-top: 7px;
+    .contact-aside {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
-
-    .tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      margin-top: 8px;
+    .ca-headline { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .ca-text { color: var(--muted); font-size: 0.84rem; line-height: 1.7; margin-bottom: 20px; }
+    .btn-cv-full {
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 11px 16px; border-radius: 9px; font-size: 0.875rem; font-weight: 500;
+      border: 1px solid rgba(34,211,238,0.3); background: rgba(34,211,238,0.07);
+      color: var(--cyan2); cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.22s ease;
     }
+    .btn-cv-full:hover { background: rgba(34,211,238,0.14); border-color: rgba(34,211,238,0.5); }
+    .btn-cv-full svg { width: 13px; height: 13px; }
 
-    .tech span {
-      font-size: 0.82rem;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      color: #d6e4ff;
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.72); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center;
     }
-
-    .timeline {
-      display: grid;
-      gap: 18px;
-    }
-
-    .timeline-item {
-      padding: 24px;
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--bg2); border: 1px solid rgba(34,211,238,0.16);
+      border-radius: 20px; padding: 32px; max-width: 460px; width: 90%;
       position: relative;
-      overflow: hidden;
+      animation: modal-pop 0.26s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 22px;
-      bottom: 22px;
-      width: 4px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--primary), var(--accent));
+    @keyframes modal-pop {
+      from { opacity: 0; transform: scale(0.9) translateY(14px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
     }
-
-    .timeline-content {
-      padding-left: 18px;
+    .modal-x {
+      position: absolute; top: 14px; right: 14px;
+      width: 29px; height: 29px; border-radius: 7px;
+      background: var(--surface); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--muted); font-size: 0.88rem;
+      transition: all 0.18s;
     }
-
-    .timeline-top {
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
+    .modal-x:hover { color: var(--text); }
+    .modal h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+    .modal p { color: var(--muted); font-size: 0.85rem; margin-bottom: 20px; }
+    .modal-opts { display: grid; gap: 10px; }
+    .m-opt {
+      display: flex; align-items: center; gap: 14px;
+      padding: 15px 18px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.2s ease;
     }
-
-    .timeline-top h3 {
-      font-size: 1.15rem;
+    .m-opt:hover { border-color: rgba(34,211,238,0.28); transform: translateX(3px); }
+    .m-icon {
+      width: 38px; height: 38px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
     }
+    .m-icon svg { width: 18px; height: 18px; }
+    .mi-pdf { background: rgba(248,113,113,0.1); color: #fca5a5; }
+    .mi-web { background: rgba(34,211,238,0.08); color: var(--cyan2); }
+    .m-title { font-weight: 500; font-size: 0.9rem; margin-bottom: 2px; }
+    .m-sub   { font-size: 0.78rem; color: var(--muted); }
+    .m-arr   { margin-left: auto; color: var(--muted); font-size: 0.85rem; }
 
-    .timeline-top .date {
-      color: #bae6fd;
-      background: rgba(56, 189, 248, 0.08);
-      padding: 7px 12px;
-      border: 1px solid rgba(56, 189, 248, 0.15);
-      border-radius: 999px;
-      font-size: 0.88rem;
+    /* FOOTER */
+    footer { margin-top: 80px; padding: 34px 0; border-top: 1px solid var(--border); position: relative; z-index: 1; }
+    .foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .foot-brand { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; }
+    .foot-copy  { color: var(--muted); font-size: 0.8rem; }
+    .foot-links { display: flex; gap: 18px; }
+    .foot-links a { color: var(--muted); font-size: 0.8rem; transition: color 0.18s; }
+    .foot-links a:hover { color: var(--cyan2); }
+
+    /* ANIMATIONS */
+    .fade { opacity: 0; transform: translateY(20px); animation: fadein 0.62s cubic-bezier(0.22,1,0.36,1) forwards; }
+    @keyframes fadein { to { opacity: 1; transform: translateY(0); } }
+    .d1{animation-delay:.08s}.d2{animation-delay:.18s}.d3{animation-delay:.28s}
+    .d4{animation-delay:.38s}.d5{animation-delay:.48s}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .hero-grid,.about-grid,.projects-grid,.edu-grid,.contact-grid{grid-template-columns:1fr;}
+      .skills-grid{grid-template-columns:repeat(2,1fr);}
     }
-
-    .timeline-role {
-      color: #cbd5e1;
-      margin-bottom: 12px;
-      font-weight: 600;
-    }
-
-    .timeline ul {
-      margin-left: 18px;
-      color: #dce7fa;
-    }
-
-    .timeline li + li {
-      margin-top: 8px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .edu-card,
-    .cert-card,
-    .contact-card {
-      padding: 24px;
-    }
-
-    .edu-card h3,
-    .cert-card h3,
-    .contact-card h3 {
-      margin-bottom: 12px;
-    }
-
-    .edu-card p,
-    .cert-card p,
-    .contact-card p {
-      color: var(--muted);
-    }
-
-    .cert-list,
-    .contact-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .cert-item,
-    .contact-item {
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .cert-item strong,
-    .contact-item strong {
-      display: block;
-      margin-bottom: 3px;
-      color: #eaf3ff;
-    }
-
-    footer {
-      padding: 38px 0 50px;
-      color: var(--muted);
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .about,
-      .skills-grid,
-      .projects-grid,
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-
-      .nav {
-        flex-direction: column;
-        justify-content: center;
-        padding: 14px 0;
-      }
-
-      .section-title {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 60px;
-      }
-
-      .hero-card,
-      .glass,
-      .project-card,
-      .timeline-item,
-      .skill-box,
-      .edu-card,
-      .cert-card,
-      .contact-card {
-        padding: 20px;
-      }
-
-      .cta,
-      .nav-links {
-        gap: 10px;
-      }
-
-      .stat-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        letter-spacing: -1.1px;
-      }
+    @media(max-width:640px){
+      .nav-links{display:none;}
+      .hero{padding:56px 0;}
+      .skills-grid{grid-template-columns:1fr;}
+      .hero-name{letter-spacing:-1.8px;}
+      .foot{flex-direction:column;text-align:center;}
     }
   </style>
 </head>
 <body>
-  <div class="blur"></div>
-  <div class="blur-2"></div>
 
+  <div class="ambient-1"></div>
+  <div class="ambient-2"></div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="cvModal">
+    <div class="modal">
+      <button class="modal-x" onclick="closeModal()">✕</button>
+      <h3>Curriculum Vitae</h3>
+      <p>Téléchargez ou consultez le CV complet de Zakaria Rebbah.</p>
+      <div class="modal-opts">
+        <div class="m-opt" onclick="https://drive.google.com/file/d/1iZ_E6E2Ab4d3T9fENZRN0McO2HM5lsqe/view?usp=sharing">
+          <div class="m-icon mi-pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <div>
+            <div class="m-title">Télécharger en PDF</div>
+            <div class="m-sub">Format A4 — Mis à jour 2025</div>
+          </div>
+          <div class="m-arr">↓</div>
+        </div>
+        <div class="m-opt" onclick="window.open('https://linkedin.com/in/zakaria-rebbah','_blank')">
+          <div class="m-icon mi-web">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="m-title">Voir sur LinkedIn</div>
+            <div class="m-sub">Profil complet et recommandations</div>
+          </div>
+          <div class="m-arr">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
   <header>
     <div class="container nav">
-      <a href="#home" class="brand">Zakaria<span>.</span></a>
+      <a href="#home" class="brand">Zakaria<span class="brand-accent">.</span></a>
       <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
+        <a href="#about">À propos</a>
+        <a href="#skills">Compétences</a>
+        <a href="#projects">Projets</a>
+        <a href="#experience">Expérience</a>
+        <a href="#education">Formation</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="btn-cv" onclick="openModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14,2 14,8 20,8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+        Voir CV
+      </button>
     </div>
   </header>
 
   <main class="container">
+
+    <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-grid">
-        <div class="hero-card">
-          <div class="eyebrow">● Available for internships and impactful tech projects</div>
-          <h1><span class="gradient">Zakaria Rebbah</span></h1>
-          <div class="subtitle">AI Engineer • Data Science • Full-Stack Developer</div>
-          <p>
-            I build intelligent digital products that combine <strong>AI, data, and modern software engineering</strong> —
-            from machine learning systems and analytics platforms to scalable web and mobile applications.
+        <div>
+          <div class="eyebrow fade d1">
+            <span class="eyebrow-bar"></span>
+            AI Engineer &amp; Full-Stack Developer
+          </div>
+          <h1 class="hero-name fade d2">
+            <span class="n1">Zakaria</span>
+            <span class="n2">Rebbah</span>
+          </h1>
+          <div class="role-tags fade d2">
+            <span class="rtag rtag-main">Intelligence Artificielle</span>
+            <span class="rtag">Data Science</span>
+            <span class="rtag">Full-Stack Dev</span>
+          </div>
+          <p class="hero-desc fade d3">
+            Je conçois des <strong>systèmes intelligents et des produits digitaux</strong> combinant
+            IA, données et ingénierie logicielle moderne — des pipelines RAG et ML aux
+            applications web et mobiles scalables.
           </p>
-          <div class="cta">
-            <a class="btn btn-primary" href="#experience">View Experience</a>
-            <a class="btn btn-secondary" href="#projects">Explore Projects</a>
-            <a class="btn btn-secondary" href="mailto:Zakaria.Rebbah3@gmail.com">Contact Me</a>
+          <div class="hero-cta fade d4">
+            <a class="btn-primary" href="#projects">Voir les projets</a>
+            <a class="btn-outline" href="#experience">Expérience →</a>
+            <button class="btn-outline" onclick="openModal()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14,2 14,8 20,8"/>
+              </svg>
+              Voir CV
+            </button>
           </div>
         </div>
 
-        <div class="hero-side">
-          <div class="glass">
-            <div class="stat-grid">
-              <div class="stat">
-                <h3>5+</h3>
-                <p>Major projects across AI, BI, web, mobile, and ERP systems.</p>
+        <div class="hero-panel fade d4">
+          <div class="panel">
+            <div class="stats-2x2">
+              <div class="stat-box">
+                <div class="stat-n">5+</div>
+                <div class="stat-l">Projets IA, BI, web &amp; mobile</div>
               </div>
-              <div class="stat">
-                <h3>2025</h3>
-                <p>Hands-on internship in AI and full-stack development at NEXTRONIC.</p>
+              <div class="stat-box">
+                <div class="stat-n">RAG</div>
+                <div class="stat-l">LangChain &amp; pipelines LLM</div>
               </div>
-              <div class="stat">
-                <h3>AI</h3>
-                <p>Focused on machine learning, LangChain, recommendation systems, and data products.</p>
+              <div class="stat-box">
+                <div class="stat-n">ML</div>
+                <div class="stat-l">Machine Learning &amp; Deep Learning</div>
               </div>
-              <div class="stat">
-                <h3>PM</h3>
-                <p>Project Manager in a university club, leading workshops and digital initiatives.</p>
+              <div class="stat-box">
+                <div class="stat-n">PM</div>
+                <div class="stat-l">Leadership &amp; gestion de projets</div>
               </div>
             </div>
           </div>
-
-          <div class="glass">
-            <div class="quick-info">
-              <div class="quick-row"><span>Location</span><span>Morocco</span></div>
-              <div class="quick-row"><span>School</span><span>ENSA El Jadida</span></div>
-              <div class="quick-row"><span>Email</span><span>Zakaria.Rebbah3@gmail.com</span></div>
-              <div class="quick-row"><span>GitHub</span><span>Zakaria-reb</span></div>
-              <div class="quick-row"><span>LinkedIn</span><span>zakaria-rebbah</span></div>
+          <div class="panel">
+            <div class="avail">
+              <div class="avail-dot"></div>
+              Disponible pour stage &amp; collaborations
+            </div>
+          </div>
+          <div class="panel">
+            <div class="info-list">
+              <div class="info-row"><span class="lk">Localisation</span><span class="lv">El Jadida, Maroc</span></div>
+              <div class="info-row"><span class="lk">École</span><span class="lv">ENSA El Jadida</span></div>
+              <div class="info-row"><span class="lk">Email</span><span class="lv">Zakaria.Rebbah3@gmail.com</span></div>
+              <div class="info-row"><span class="lk">GitHub</span><span class="lv">Zakaria-reb</span></div>
+              <div class="info-row"><span class="lk">LinkedIn</span><span class="lv">zakaria-rebbah</span></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about">
-      <div class="section-title">
-        <h2>About Me</h2>
-        <p>Engineering student with a strong interest in building practical, intelligent, and scalable software systems.</p>
+      <div class="sec-head">
+        <div class="sec-eyebrow">À propos</div>
+        <h2 class="sec-title">Ingénieur passionné par l'IA<br>et les systèmes complexes</h2>
+        <p class="sec-sub">Approche orientée impact, scalabilité et rigueur technique.</p>
       </div>
-
-      <div class="about">
-        <div class="glass">
-          <p>
-            I am an engineering student in <strong>Computer Science and Emerging Technologies</strong> with a deep passion
-            for <strong>Artificial Intelligence, Data Science, and full-stack development</strong>. I enjoy transforming ideas
-            into complete digital solutions that are useful, scalable, and technically solid.
-          </p>
-          <p>
-            My work spans intelligent recommendation systems, AI assistants, business intelligence platforms, mobile apps,
-            and enterprise software. I like projects where <strong>data, machine learning, backend architecture, and user experience</strong>
-            come together to solve real problems.
-          </p>
-          <p>
-            My goal is to grow into a high-impact <strong>AI engineer and software builder</strong>, capable of designing
-            end-to-end systems — from data pipelines and analytics to modern interfaces and secure production-ready applications.
-          </p>
+      <div class="about-grid">
+        <div class="card about-text">
+          <p>Étudiant en <strong>Informatique et Technologies Émergentes</strong> à l'ENSA El Jadida, je suis passionné par l'<strong>Intelligence Artificielle, la Data Science et le développement full-stack</strong>. J'aime transformer des idées en solutions digitales complètes — robustes, utiles et techniquement solides.</p>
+          <p>Mes projets couvrent des systèmes de recommandation, assistants IA RAG/LangChain, plateformes analytics, applications mobiles et logiciels métier. J'apprécie les projets où <strong>données, machine learning, architecture backend et expérience utilisateur</strong> convergent pour résoudre de vrais problèmes.</p>
+          <p>Mon ambition est de devenir un <strong>AI Engineer à fort impact</strong>, capable de concevoir des systèmes end-to-end — des pipelines de données aux interfaces modernes et architectures sécurisées déployables en production.</p>
         </div>
-
-        <div class="glass highlights">
-          <div class="highlight">
-            <strong>What I build</strong>
-            AI-powered applications, analytics platforms, business systems, and full-stack web/mobile products.
-          </div>
-          <div class="highlight">
-            <strong>What I enjoy most</strong>
-            Combining machine learning, strong backend logic, and clean user-facing experiences.
-          </div>
-          <div class="highlight">
-            <strong>Current direction</strong>
-            AI engineering, applied data science, intelligent assistants, and scalable software architecture.
+        <div class="card">
+          <div class="pillars">
+            <div class="pillar">
+              <strong>Ce que je construis</strong>
+              <span>Applications IA, plateformes analytics, systèmes métier, produits web et mobile complets.</span>
+            </div>
+            <div class="pillar">
+              <strong>Ce qui me passionne</strong>
+              <span>Combiner ML, architecture backend solide et expériences utilisateur soignées.</span>
+            </div>
+            <div class="pillar">
+              <strong>Direction actuelle</strong>
+              <span>AI engineering, data science appliquée, assistants intelligents, architecture scalable.</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SKILLS -->
     <section id="skills">
-      <div class="section-title">
-        <h2>Core Skills</h2>
-        <p>A balanced mix of software engineering, AI, data systems, and collaborative project execution.</p>
+      <div class="sec-head">
+        <div class="sec-eyebrow">Compétences</div>
+        <h2 class="sec-title">Stack technique &amp; savoir-faire</h2>
+        <p class="sec-sub">Un ensemble équilibré entre ingénierie logicielle, IA, systèmes de données et soft skills.</p>
       </div>
-
       <div class="skills-grid">
-        <div class="skill-box">
-          <h3>Programming & Software</h3>
+        <div class="skill-card">
+          <div class="skill-cat">Langages</div>
           <div class="chips">
-            <span class="chip">Python</span>
-            <span class="chip">Java</span>
-            <span class="chip">Kotlin</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">SQL</span>
-            <span class="chip">PHP</span>
-            <span class="chip">C</span>
+            <span class="chip">Python</span><span class="chip">Java</span><span class="chip">Kotlin</span>
+            <span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">PHP</span><span class="chip">C</span>
           </div>
         </div>
-
-        <div class="skill-box">
-          <h3>Frameworks & Development</h3>
+        <div class="skill-card">
+          <div class="skill-cat">Frameworks &amp; Dev</div>
           <div class="chips">
-            <span class="chip">Spring Boot</span>
-            <span class="chip">React.js</span>
-            <span class="chip">Node.js</span>
-            <span class="chip">Express.js</span>
-            <span class="chip">Flask</span>
-            <span class="chip">Laravel</span>
-            <span class="chip">Android Jetpack</span>
+            <span class="chip">Spring Boot</span><span class="chip">React.js</span><span class="chip">Node.js</span>
+            <span class="chip">Express.js</span><span class="chip">Flask</span><span class="chip">Laravel</span><span class="chip">Android Jetpack</span>
           </div>
         </div>
-
-        <div class="skill-box">
-          <h3>AI, Data & BI</h3>
+        <div class="skill-card">
+          <div class="skill-cat">IA, Data &amp; BI</div>
           <div class="chips">
-            <span class="chip">Machine Learning</span>
-            <span class="chip">Deep Learning</span>
-            <span class="chip">LangChain</span>
-            <span class="chip">OpenAI</span>
-            <span class="chip">Talend</span>
-            <span class="chip">Power BI</span>
-            <span class="chip">Data Warehousing</span>
-            <span class="chip">OLAP</span>
+            <span class="chip">Machine Learning</span><span class="chip">Deep Learning</span><span class="chip">LangChain</span>
+            <span class="chip">OpenAI</span><span class="chip">Talend</span><span class="chip">Power BI</span>
+            <span class="chip">Data Warehousing</span><span class="chip">OLAP</span>
           </div>
         </div>
-
-        <div class="skill-box">
-          <h3>Databases</h3>
+        <div class="skill-card">
+          <div class="skill-cat">Bases de données</div>
           <div class="chips">
-            <span class="chip">PostgreSQL</span>
-            <span class="chip">MySQL</span>
-            <span class="chip">Oracle Database</span>
-            <span class="chip">MongoDB</span>
-            <span class="chip">SQLite</span>
+            <span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Oracle DB</span>
+            <span class="chip">MongoDB</span><span class="chip">SQLite</span>
           </div>
         </div>
-
-        <div class="skill-box">
-          <h3>Tools & DevOps</h3>
+        <div class="skill-card">
+          <div class="skill-cat">Outils &amp; DevOps</div>
           <div class="chips">
-            <span class="chip">Git</span>
-            <span class="chip">GitHub</span>
-            <span class="chip">Docker</span>
-            <span class="chip">Linux</span>
-            <span class="chip">CI/CD</span>
-            <span class="chip">Stripe</span>
-            <span class="chip">Cloudinary</span>
+            <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Docker</span>
+            <span class="chip">Linux</span><span class="chip">CI/CD</span><span class="chip">Stripe</span><span class="chip">Cloudinary</span>
           </div>
         </div>
-
-        <div class="skill-box">
-          <h3>Professional Strengths</h3>
+        <div class="skill-card">
+          <div class="skill-cat">Soft Skills</div>
           <div class="chips">
-            <span class="chip">Project Management</span>
-            <span class="chip">Problem Solving</span>
-            <span class="chip">Team Collaboration</span>
-            <span class="chip">Communication</span>
-            <span class="chip">Analytical Thinking</span>
-            <span class="chip">Leadership</span>
+            <span class="chip">Project Management</span><span class="chip">Problem Solving</span>
+            <span class="chip">Travail d'équipe</span><span class="chip">Communication</span>
+            <span class="chip">Pensée analytique</span><span class="chip">Leadership</span>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- PROJECTS -->
     <section id="projects">
-      <div class="section-title">
-        <h2>Featured Projects</h2>
-        <p>Selected work that reflects my experience across AI, business systems, mobile, and data analytics.</p>
+      <div class="sec-head">
+        <div class="sec-eyebrow">Projets</div>
+        <h2 class="sec-title">Réalisations sélectionnées</h2>
+        <p class="sec-sub">Travaux représentatifs en IA, systèmes métier, mobile et analytics de données.</p>
       </div>
-
       <div class="projects-grid">
-        <article class="project-card">
-          <div class="project-top">
-            <h3>Inventera</h3>
-            <span class="project-label">SaaS Platform</span>
-          </div>
-          <p>
-            A multi-company inventory management platform designed to support business operations with secure access control,
-            subscription handling, and scalable backend architecture.
-          </p>
-          <ul class="project-list">
-            <li>Built a robust backend with Spring Boot and MVC architecture.</li>
-            <li>Implemented RBAC with Spring Security and multi-level subscription plans.</li>
-            <li>Integrated Stripe payments, Cloudinary image management, and automated email flows.</li>
+        <article class="proj">
+          <div class="proj-head"><h3>Inventera</h3><span class="badge b-saas">SaaS</span></div>
+          <p class="proj-desc">Plateforme multi-entreprises de gestion de stock avec contrôle d'accès, abonnements et architecture backend scalable.</p>
+          <ul class="proj-list">
+            <li>Backend robuste avec Spring Boot et architecture MVC.</li>
+            <li>RBAC avec Spring Security et plans d'abonnement multi-niveaux.</li>
+            <li>Intégration Stripe, Cloudinary et emails automatisés.</li>
           </ul>
-          <div class="tech">
-            <span>Spring Boot</span>
-            <span>PostgreSQL</span>
-            <span>Stripe</span>
-            <span>Cloudinary</span>
-            <span>Spring Security</span>
+          <div class="tc-row">
+            <span class="tc">Spring Boot</span><span class="tc">PostgreSQL</span><span class="tc">Stripe</span><span class="tc">Cloudinary</span><span class="tc">Spring Security</span>
           </div>
         </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <h3>E-Learning Platform with Recommendation Engine</h3>
-            <span class="project-label">AI Product</span>
-          </div>
-          <p>
-            An intelligent learning platform that personalizes course recommendations through behavioral analysis and machine learning.
-          </p>
-          <ul class="project-list">
-            <li>Designed a hybrid recommendation engine based on user preferences and interactions.</li>
-            <li>Built a full-stack architecture using Flask and React.</li>
-            <li>Improved user experience through adaptive content discovery.</li>
+        <article class="proj">
+          <div class="proj-head"><h3>E-Learning + Recommandation</h3><span class="badge b-ai">IA</span></div>
+          <p class="proj-desc">Plateforme d'apprentissage qui personnalise les recommandations de cours via analyse comportementale et ML.</p>
+          <ul class="proj-list">
+            <li>Moteur de recommandation hybride basé sur préférences et interactions.</li>
+            <li>Architecture full-stack Flask + React.</li>
+            <li>Découverte de contenu adaptative pour l'UX.</li>
           </ul>
-          <div class="tech">
-            <span>Flask</span>
-            <span>React.js</span>
-            <span>Python</span>
-            <span>Machine Learning</span>
+          <div class="tc-row">
+            <span class="tc">Flask</span><span class="tc">React.js</span><span class="tc">Python</span><span class="tc">Machine Learning</span>
           </div>
         </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <h3>ShopSmart</h3>
-            <span class="project-label">Mobile App</span>
-          </div>
-          <p>
-            A native Android e-commerce application with AI-powered product search, secure payments, and a complete shopping experience.
-          </p>
-          <ul class="project-list">
-            <li>Implemented natural language search using OpenAI-based capabilities.</li>
-            <li>Built shopping, orders, user profile, and delivery tracking features.</li>
-            <li>Used modern Android architecture for maintainability and better UX.</li>
+        <article class="proj">
+          <div class="proj-head"><h3>ShopSmart</h3><span class="badge b-mobile">Mobile</span></div>
+          <p class="proj-desc">Application Android e-commerce avec recherche en langage naturel via OpenAI, paiement sécurisé et expérience shopping complète.</p>
+          <ul class="proj-list">
+            <li>Recherche NLP via OpenAI API.</li>
+            <li>Commandes, profil utilisateur, suivi de livraison.</li>
+            <li>Architecture Android moderne pour UX optimisée.</li>
           </ul>
-          <div class="tech">
-            <span>Kotlin</span>
-            <span>Android Jetpack</span>
-            <span>OpenAI API</span>
-            <span>Retrofit</span>
-            <span>Stripe SDK</span>
+          <div class="tc-row">
+            <span class="tc">Kotlin</span><span class="tc">Android Jetpack</span><span class="tc">OpenAI API</span><span class="tc">Retrofit</span><span class="tc">Stripe SDK</span>
           </div>
         </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <h3>Healthcare Payment Analytics Platform</h3>
-            <span class="project-label">BI & Data</span>
-          </div>
-          <p>
-            A decision-support platform for analyzing health insurance payment data through ETL pipelines, OLAP models, and interactive dashboards.
-          </p>
-          <ul class="project-list">
-            <li>Built the ETL workflow using Talend and designed a snowflake-schema data warehouse.</li>
-            <li>Created analytical cubes and MDX-ready structures using JasperServer and Mondrian.</li>
-            <li>Delivered dashboard-based KPI monitoring and drill-down analysis.</li>
+        <article class="proj">
+          <div class="proj-head"><h3>Analytics Paiements Santé</h3><span class="badge b-bi">BI &amp; Data</span></div>
+          <p class="proj-desc">Plateforme d'aide à la décision pour analyser des données d'assurance maladie via ETL, OLAP et dashboards interactifs.</p>
+          <ul class="proj-list">
+            <li>Workflow ETL Talend, data warehouse schéma en flocon.</li>
+            <li>Cubes analytiques MDX avec JasperServer et Mondrian.</li>
+            <li>KPIs et analyse drill-down via dashboards.</li>
           </ul>
-          <div class="tech">
-            <span>Talend</span>
-            <span>Oracle</span>
-            <span>JasperServer</span>
-            <span>Mondrian</span>
-            <span>Google Data Studio</span>
+          <div class="tc-row">
+            <span class="tc">Talend</span><span class="tc">Oracle</span><span class="tc">JasperServer</span><span class="tc">Mondrian</span><span class="tc">Data Studio</span>
           </div>
         </article>
-
-        <article class="project-card">
-          <div class="project-top">
-            <h3>Pharmacy Management System with Odoo ERP</h3>
-            <span class="project-label">ERP Solution</span>
-          </div>
-          <p>
-            A complete ERP-based digitalization of pharmacy operations covering stock, purchases, sales, accounting, CRM, and e-commerce.
-          </p>
-          <ul class="project-list">
-            <li>Configured core Odoo modules to streamline daily pharmacy operations.</li>
-            <li>Automated workflows for suppliers, stock reception, sales, and invoicing.</li>
-            <li>Connected business operations with analytics and online commerce features.</li>
+        <article class="proj">
+          <div class="proj-head"><h3>Pharmacie ERP Odoo</h3><span class="badge b-erp">ERP</span></div>
+          <p class="proj-desc">Digitalisation ERP complète des opérations pharmacie — stock, achats, ventes, comptabilité, CRM et e-commerce.</p>
+          <ul class="proj-list">
+            <li>Configuration des modules Odoo pour les opérations quotidiennes.</li>
+            <li>Workflows automatisés fournisseurs, réceptions, ventes, facturation.</li>
+            <li>Analytics et commerce en ligne intégrés.</li>
           </ul>
-          <div class="tech">
-            <span>Odoo 17</span>
-            <span>Inventory</span>
-            <span>Sales</span>
-            <span>POS</span>
-            <span>CRM</span>
-            <span>Accounting</span>
+          <div class="tc-row">
+            <span class="tc">Odoo 17</span><span class="tc">Inventaire</span><span class="tc">Ventes</span><span class="tc">CRM</span><span class="tc">Comptabilité</span>
           </div>
         </article>
       </div>
     </section>
 
+    <!-- EXPERIENCE -->
     <section id="experience">
-      <div class="section-title">
-        <h2>Professional Experience</h2>
-        <p>Hands-on experience delivering AI and full-stack solutions in a real development environment.</p>
+      <div class="sec-head">
+        <div class="sec-eyebrow">Expérience</div>
+        <h2 class="sec-title">Parcours professionnel</h2>
+        <p class="sec-sub">Expérience concrète en livraison de solutions IA et full-stack en environnement réel.</p>
       </div>
-
-      <div class="timeline">
-        <article class="timeline-item">
-          <div class="timeline-content">
-            <div class="timeline-top">
-              <div>
-                <h3>AI & Web Development Intern</h3>
-                <div class="timeline-role">NEXTRONIC • Casablanca, Morocco</div>
-              </div>
-              <div class="date">Jun 2025 – Aug 2025</div>
+      <div class="tl-card">
+        <div class="tl-inner">
+          <div class="tl-top">
+            <div>
+              <h3>Stagiaire IA &amp; Développement Web</h3>
+              <p class="tl-company"><strong>NEXTRONIC</strong> &nbsp;·&nbsp; Casablanca, Maroc</p>
             </div>
-            <ul>
-              <li>Developed an <strong>AI assistant for telemetry data analysis</strong> with a multi-session workflow.</li>
-              <li>Built a <strong>RAG pipeline using LangChain</strong> to support intelligent querying and contextual analysis.</li>
-              <li>Designed a complete full-stack architecture with <strong>React.js, Node.js, and PostgreSQL</strong>.</li>
-              <li>Implemented <strong>JWT-based authentication</strong> to secure user sessions and platform access.</li>
-            </ul>
+            <span class="tl-date">Juin – Août 2025</span>
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="education">
-      <div class="section-title">
-        <h2>Education & Certifications</h2>
-        <p>Academic background in engineering, supported by continuous technical learning and professional certifications.</p>
-      </div>
-
-      <div class="two-col">
-        <div class="edu-card">
-          <h3>Education</h3>
-          <div class="cert-list">
-            <div class="cert-item">
-              <strong>Engineering Degree in Computer Science & Emerging Technologies</strong>
-              École Nationale des Sciences Appliquées d’El Jadida<br />
-              2024 – Present
-            </div>
-            <div class="cert-item">
-              <strong>Integrated Preparatory Classes</strong>
-              École Nationale des Sciences Appliquées d’El Jadida<br />
-              2022 – 2024
-            </div>
-          </div>
-        </div>
-
-        <div class="cert-card">
-          <h3>Certifications</h3>
-          <div class="cert-list">
-            <div class="cert-item">
-              <strong>Python for Data Science, AI & Development</strong>
-              IBM
-            </div>
-            <div class="cert-item">
-              <strong>SQL: A Practical Introduction for Querying Databases</strong>
-              IBM
-            </div>
-            <div class="cert-item">
-              <strong>C for Everyone: Programming Fundamentals</strong>
-              University of California
-            </div>
-            <div class="cert-item">
-              <strong>Advanced Git and GitHub Practices</strong>
-              Packt • 2026
-            </div>
-            <div class="cert-item">
-              <strong>Oracle Certified Professional: Java SE 17 Developer</strong>
-              Oracle • 2026
-            </div>
-          </div>
+          <ul class="tl-list">
+            <li>Développement d'un <strong>assistant IA pour l'analyse de données télémétriques</strong> avec workflow multi-sessions.</li>
+            <li>Construction d'un <strong>pipeline RAG avec LangChain</strong> pour le requêtage intelligent et l'analyse contextuelle.</li>
+            <li>Architecture full-stack complète avec <strong>React.js, Node.js et PostgreSQL</strong>.</li>
+            <li>Mise en place d'une <strong>authentification JWT</strong> pour sécuriser les sessions utilisateurs.</li>
+          </ul>
         </div>
       </div>
     </section>
 
+    <!-- LEADERSHIP -->
     <section id="leadership">
-      <div class="section-title">
-        <h2>Leadership & Volunteering</h2>
-        <p>Experience leading student initiatives, coordinating teams, and creating useful digital solutions inside the club environment.</p>
+      <div class="sec-head">
+        <div class="sec-eyebrow">Leadership</div>
+        <h2 class="sec-title">Engagement &amp; Bénévolat</h2>
+        <p class="sec-sub">Direction de projets étudiants et création de solutions digitales au sein du club universitaire.</p>
       </div>
-
-      <div class="timeline">
-        <article class="timeline-item">
-          <div class="timeline-content">
-            <div class="timeline-top">
-              <div>
-                <h3>Project Manager</h3>
-                <div class="timeline-role">University Club</div>
-              </div>
-              <div class="date">Current</div>
+      <div class="tl-card">
+        <div class="tl-inner">
+          <div class="tl-top">
+            <div>
+              <h3>Chef de Projet</h3>
+              <p class="tl-company"><strong>Club Universitaire</strong> &nbsp;·&nbsp; ENSA El Jadida</p>
             </div>
-            <ul>
-              <li>Led student technology projects from idea to execution.</li>
-              <li>Organized workshops and technical learning sessions for members.</li>
-              <li>Delivered practical training on <strong>Git and GitHub</strong>.</li>
-              <li>Contributed to digital services such as smoother <strong>membership and payment management</strong>.</li>
-              <li>Coordinated teams, timelines, and project follow-up across club activities.</li>
-            </ul>
+            <span class="tl-date">Actuel</span>
           </div>
-        </article>
+          <ul class="tl-list">
+            <li>Direction de projets technologiques étudiants de l'idée à l'exécution.</li>
+            <li>Organisation d'ateliers et sessions d'apprentissage technique pour les membres.</li>
+            <li>Formation pratique sur <strong>Git et GitHub</strong>.</li>
+            <li>Contribution à des services digitaux — <strong>gestion des adhésions et paiements</strong>.</li>
+            <li>Coordination d'équipes, timelines et suivi transversal des projets.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section id="contact">
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>I am open to internships, collaborations, and opportunities to build meaningful software and AI solutions.</p>
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Formation</div>
+        <h2 class="sec-title">Éducation &amp; Certifications</h2>
+        <p class="sec-sub">Formation d'ingénieur complétée par un apprentissage continu et des certifications professionnelles.</p>
       </div>
-
-      <div class="contact-card">
-        <h3>Let’s connect</h3>
-        <div class="contact-list">
-          <div class="contact-item">
-            <strong>Email</strong>
-            <a href="mailto:Zakaria.Rebbah3@gmail.com">Zakaria.Rebbah3@gmail.com</a>
+      <div class="edu-grid">
+        <div class="card">
+          <div class="sub-title">Formation académique</div>
+          <div class="edu-list">
+            <div class="edu-item">
+              <strong>Diplôme d'Ingénieur — Informatique &amp; Technologies Émergentes</strong>
+              <span>École Nationale des Sciences Appliquées d'El Jadida · 2024 – Présent</span>
+            </div>
+            <div class="edu-item">
+              <strong>Classes Préparatoires Intégrées</strong>
+              <span>École Nationale des Sciences Appliquées d'El Jadida · 2022 – 2024</span>
+            </div>
           </div>
-          <div class="contact-item">
-            <strong>GitHub</strong>
-            <a href="https://github.com/Zakaria-reb" target="_blank">github.com/Zakaria-reb</a>
-          </div>
-          <div class="contact-item">
-            <strong>LinkedIn</strong>
-            <a href="https://linkedin.com/in/zakaria-rebbah" target="_blank">linkedin.com/in/zakaria-rebbah</a>
-          </div>
-          <div class="contact-item">
-            <strong>Portfolio</strong>
-            <span>Add your deployed GitHub Pages link here</span>
+        </div>
+        <div class="card">
+          <div class="sub-title">Certifications</div>
+          <div class="edu-list">
+            <div class="edu-item">
+              <strong>Python for Data Science, AI &amp; Development</strong>
+              <span class="cert-org">IBM</span>
+            </div>
+            <div class="edu-item">
+              <strong>SQL: A Practical Introduction for Querying Databases</strong>
+              <span class="cert-org">IBM</span>
+            </div>
+            <div class="edu-item">
+              <strong>C for Everyone: Programming Fundamentals</strong>
+              <span class="cert-org">University of California</span>
+            </div>
+            <div class="edu-item">
+              <strong>Advanced Git and GitHub Practices</strong>
+              <span class="cert-org">Packt · 2026</span>
+            </div>
+            <div class="edu-item">
+              <strong>Oracle Certified Professional: Java SE 17 Developer</strong>
+              <span class="cert-org">Oracle · 2026</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Contact</div>
+        <h2 class="sec-title">Travaillons ensemble</h2>
+        <p class="sec-sub">Ouvert aux stages, collaborations et opportunités de construire des solutions IA et logicielles ambitieuses.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="card">
+          <div class="contact-head">Connectons-nous</div>
+          <p class="contact-sub">Disponible pour échanger sur des projets, opportunités ou idées techniques.</p>
+          <div class="c-list">
+            <div class="c-item">
+              <div class="c-icon icon-email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <polyline points="2,4 12,13 22,4"/>
+                </svg>
+              </div>
+              <div>
+                <div class="c-lbl">Email</div>
+                <div class="c-val"><a href="mailto:Zakaria.Rebbah3@gmail.com">Zakaria.Rebbah3@gmail.com</a></div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon icon-gh">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+              </div>
+              <div>
+                <div class="c-lbl">GitHub</div>
+                <div class="c-val"><a href="https://github.com/Zakaria-reb" target="_blank">github.com/Zakaria-reb</a></div>
+              </div>
+            </div>
+            <div class="c-item">
+              <div class="c-icon icon-li">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                  <rect x="2" y="9" width="4" height="12"/>
+                  <circle cx="4" cy="4" r="2"/>
+                </svg>
+              </div>
+              <div>
+                <div class="c-lbl">LinkedIn</div>
+                <div class="c-val"><a href="https://linkedin.com/in/zakaria-rebbah" target="_blank">linkedin.com/in/zakaria-rebbah</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-aside">
+          <div>
+            <div class="ca-headline">Prêt pour de nouveaux défis</div>
+            <p class="ca-text">Je recherche des projets où l'IA et le génie logiciel créent un réel impact. N'hésitez pas à me contacter.</p>
+          </div>
+          <button class="btn-cv-full" onclick="openModal()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+            Télécharger mon CV
+          </button>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer>
-    Built with GitHub Pages • © 2026 Zakaria Rebbah
+    <div class="container foot">
+      <span class="foot-brand">Zakaria<span class="brand-accent">.</span></span>
+      <span class="foot-copy">© 2026 Zakaria Rebbah · GitHub Pages</span>
+      <div class="foot-links">
+        <a href="https://github.com/Zakaria-reb" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/zakaria-rebbah" target="_blank">LinkedIn</a>
+        <a href="mailto:Zakaria.Rebbah3@gmail.com">Email</a>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    function openModal()  { document.getElementById('cvModal').classList.add('open'); }
+    function closeModal() { document.getElementById('cvModal').classList.remove('open'); }
+    document.getElementById('cvModal').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  </script>
 </body>
 </html>
