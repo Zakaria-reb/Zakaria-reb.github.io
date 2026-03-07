@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zakaria Rebbah | Portfolio</title>
+  <meta
+    name="description"
+    content="Zakaria Rebbah - AI Engineer, Data Science enthusiast, and Full-Stack Developer building intelligent systems and scalable digital products."
+  />
+  <style>
+    :root {
+      --bg: #0b1120;
+      --bg-soft: #111827;
+      --card: rgba(15, 23, 42, 0.82);
+      --card-2: rgba(17, 24, 39, 0.92);
+      --text: #e5eefc;
+      --muted: #94a3b8;
+      --line: rgba(148, 163, 184, 0.16);
+      --primary: #38bdf8;
+      --primary-2: #22d3ee;
+      --accent: #8b5cf6;
+      --success: #34d399;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --radius-sm: 14px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.14), transparent 26%),
+        linear-gradient(180deg, #07101f 0%, #0b1120 45%, #090f1c 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .blur {
+      position: fixed;
+      inset: auto auto 10% -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.13);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .blur-2 {
+      position: fixed;
+      inset: 14% -80px auto auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.14);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(6, 11, 24, 0.72);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 1.05rem;
+    }
+
+    .brand span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.96rem;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 86px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .glass,
+    .timeline-item,
+    .project-card,
+    .skill-box,
+    .contact-card,
+    .edu-card,
+    .cert-card {
+      background: linear-gradient(180deg, rgba(17, 24, 39, 0.9), rgba(15, 23, 42, 0.78));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .hero-card {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -30px auto;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 65%);
+      border-radius: 50%;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      background: rgba(56, 189, 248, 0.08);
+      color: #b8e9fb;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 4.3rem);
+      line-height: 1.08;
+      margin-bottom: 14px;
+      letter-spacing: -1.8px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, #ffffff 0%, #dbeafe 28%, #7dd3fc 65%, #67e8f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: #c7d2fe;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .cta {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      font-weight: 600;
+      transition: 0.22s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: #07101f;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .glass {
+      padding: 24px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .stat h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .quick-info {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quick-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+
+    .quick-row:last-child {
+      border-bottom: none;
+    }
+
+    .quick-row span:first-child {
+      color: var(--muted);
+    }
+
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 26px 0 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      letter-spacing: -0.7px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+    }
+
+    .about .glass {
+      padding: 28px;
+    }
+
+    .about p + p {
+      margin-top: 14px;
+    }
+
+    .highlights {
+      display: grid;
+      gap: 14px;
+    }
+
+    .highlight {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .highlight strong {
+      color: #e0f2fe;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .skill-box {
+      padding: 22px;
+    }
+
+    .skill-box h3 {
+      margin-bottom: 14px;
+      color: #dbeafe;
+      font-size: 1.05rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      color: #d9f5ff;
+      font-size: 0.9rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      padding: 24px;
+      transition: 0.25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.22);
+    }
+
+    .project-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .project-top h3 {
+      font-size: 1.15rem;
+    }
+
+    .project-label {
+      font-size: 0.78rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: #dff7ff;
+      border: 1px solid rgba(52, 211, 153, 0.22);
+      background: rgba(52, 211, 153, 0.08);
+      white-space: nowrap;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .project-list {
+      margin: 14px 0 16px 18px;
+      color: #dbeafe;
+    }
+
+    .project-list li + li {
+      margin-top: 7px;
+    }
+
+    .tech {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .tech span {
+      font-size: 0.82rem;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      color: #d6e4ff;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 22px;
+      bottom: 22px;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--primary), var(--accent));
+    }
+
+    .timeline-content {
+      padding-left: 18px;
+    }
+
+    .timeline-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .timeline-top h3 {
+      font-size: 1.15rem;
+    }
+
+    .timeline-top .date {
+      color: #bae6fd;
+      background: rgba(56, 189, 248, 0.08);
+      padding: 7px 12px;
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      border-radius: 999px;
+      font-size: 0.88rem;
+    }
+
+    .timeline-role {
+      color: #cbd5e1;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .timeline ul {
+      margin-left: 18px;
+      color: #dce7fa;
+    }
+
+    .timeline li + li {
+      margin-top: 8px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .edu-card,
+    .cert-card,
+    .contact-card {
+      padding: 24px;
+    }
+
+    .edu-card h3,
+    .cert-card h3,
+    .contact-card h3 {
+      margin-bottom: 12px;
+    }
+
+    .edu-card p,
+    .cert-card p,
+    .contact-card p {
+      color: var(--muted);
+    }
+
+    .cert-list,
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .cert-item,
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    .cert-item strong,
+    .contact-item strong {
+      display: block;
+      margin-bottom: 3px;
+      color: #eaf3ff;
+    }
+
+    footer {
+      padding: 38px 0 50px;
+      color: var(--muted);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .about,
+      .skills-grid,
+      .projects-grid,
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        justify-content: center;
+        padding: 14px 0;
+      }
+
+      .section-title {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero-card,
+      .glass,
+      .project-card,
+      .timeline-item,
+      .skill-box,
+      .edu-card,
+      .cert-card,
+      .contact-card {
+        padding: 20px;
+      }
+
+      .cta,
+      .nav-links {
+        gap: 10px;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -1.1px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="blur"></div>
+  <div class="blur-2"></div>
+
+  <header>
+    <div class="container nav">
+      <a href="#home" class="brand">Zakaria<span>.</span></a>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">● Available for internships and impactful tech projects</div>
+          <h1><span class="gradient">Zakaria Rebbah</span></h1>
+          <div class="subtitle">AI Engineer • Data Science • Full-Stack Developer</div>
+          <p>
+            I build intelligent digital products that combine <strong>AI, data, and modern software engineering</strong> —
+            from machine learning systems and analytics platforms to scalable web and mobile applications.
+          </p>
+          <div class="cta">
+            <a class="btn btn-primary" href="#experience">View Experience</a>
+            <a class="btn btn-secondary" href="#projects">Explore Projects</a>
+            <a class="btn btn-secondary" href="mailto:Zakaria.Rebbah3@gmail.com">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="glass">
+            <div class="stat-grid">
+              <div class="stat">
+                <h3>5+</h3>
+                <p>Major projects across AI, BI, web, mobile, and ERP systems.</p>
+              </div>
+              <div class="stat">
+                <h3>2025</h3>
+                <p>Hands-on internship in AI and full-stack development at NEXTRONIC.</p>
+              </div>
+              <div class="stat">
+                <h3>AI</h3>
+                <p>Focused on machine learning, LangChain, recommendation systems, and data products.</p>
+              </div>
+              <div class="stat">
+                <h3>PM</h3>
+                <p>Project Manager in a university club, leading workshops and digital initiatives.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass">
+            <div class="quick-info">
+              <div class="quick-row"><span>Location</span><span>Morocco</span></div>
+              <div class="quick-row"><span>School</span><span>ENSA El Jadida</span></div>
+              <div class="quick-row"><span>Email</span><span>Zakaria.Rebbah3@gmail.com</span></div>
+              <div class="quick-row"><span>GitHub</span><span>Zakaria-reb</span></div>
+              <div class="quick-row"><span>LinkedIn</span><span>zakaria-rebbah</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="section-title">
+        <h2>About Me</h2>
+        <p>Engineering student with a strong interest in building practical, intelligent, and scalable software systems.</p>
+      </div>
+
+      <div class="about">
+        <div class="glass">
+          <p>
+            I am an engineering student in <strong>Computer Science and Emerging Technologies</strong> with a deep passion
+            for <strong>Artificial Intelligence, Data Science, and full-stack development</strong>. I enjoy transforming ideas
+            into complete digital solutions that are useful, scalable, and technically solid.
+          </p>
+          <p>
+            My work spans intelligent recommendation systems, AI assistants, business intelligence platforms, mobile apps,
+            and enterprise software. I like projects where <strong>data, machine learning, backend architecture, and user experience</strong>
+            come together to solve real problems.
+          </p>
+          <p>
+            My goal is to grow into a high-impact <strong>AI engineer and software builder</strong>, capable of designing
+            end-to-end systems — from data pipelines and analytics to modern interfaces and secure production-ready applications.
+          </p>
+        </div>
+
+        <div class="glass highlights">
+          <div class="highlight">
+            <strong>What I build</strong>
+            AI-powered applications, analytics platforms, business systems, and full-stack web/mobile products.
+          </div>
+          <div class="highlight">
+            <strong>What I enjoy most</strong>
+            Combining machine learning, strong backend logic, and clean user-facing experiences.
+          </div>
+          <div class="highlight">
+            <strong>Current direction</strong>
+            AI engineering, applied data science, intelligent assistants, and scalable software architecture.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="section-title">
+        <h2>Core Skills</h2>
+        <p>A balanced mix of software engineering, AI, data systems, and collaborative project execution.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Programming & Software</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+            <span class="chip">Kotlin</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">SQL</span>
+            <span class="chip">PHP</span>
+            <span class="chip">C</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h3>Frameworks & Development</h3>
+          <div class="chips">
+            <span class="chip">Spring Boot</span>
+            <span class="chip">React.js</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">Express.js</span>
+            <span class="chip">Flask</span>
+            <span class="chip">Laravel</span>
+            <span class="chip">Android Jetpack</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h3>AI, Data & BI</h3>
+          <div class="chips">
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Deep Learning</span>
+            <span class="chip">LangChain</span>
+            <span class="chip">OpenAI</span>
+            <span class="chip">Talend</span>
+            <span class="chip">Power BI</span>
+            <span class="chip">Data Warehousing</span>
+            <span class="chip">OLAP</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h3>Databases</h3>
+          <div class="chips">
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">Oracle Database</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">SQLite</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h3>Tools & DevOps</h3>
+          <div class="chips">
+            <span class="chip">Git</span>
+            <span class="chip">GitHub</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Linux</span>
+            <span class="chip">CI/CD</span>
+            <span class="chip">Stripe</span>
+            <span class="chip">Cloudinary</span>
+          </div>
+        </div>
+
+        <div class="skill-box">
+          <h3>Professional Strengths</h3>
+          <div class="chips">
+            <span class="chip">Project Management</span>
+            <span class="chip">Problem Solving</span>
+            <span class="chip">Team Collaboration</span>
+            <span class="chip">Communication</span>
+            <span class="chip">Analytical Thinking</span>
+            <span class="chip">Leadership</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">
+        <h2>Featured Projects</h2>
+        <p>Selected work that reflects my experience across AI, business systems, mobile, and data analytics.</p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-top">
+            <h3>Inventera</h3>
+            <span class="project-label">SaaS Platform</span>
+          </div>
+          <p>
+            A multi-company inventory management platform designed to support business operations with secure access control,
+            subscription handling, and scalable backend architecture.
+          </p>
+          <ul class="project-list">
+            <li>Built a robust backend with Spring Boot and MVC architecture.</li>
+            <li>Implemented RBAC with Spring Security and multi-level subscription plans.</li>
+            <li>Integrated Stripe payments, Cloudinary image management, and automated email flows.</li>
+          </ul>
+          <div class="tech">
+            <span>Spring Boot</span>
+            <span>PostgreSQL</span>
+            <span>Stripe</span>
+            <span>Cloudinary</span>
+            <span>Spring Security</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <h3>E-Learning Platform with Recommendation Engine</h3>
+            <span class="project-label">AI Product</span>
+          </div>
+          <p>
+            An intelligent learning platform that personalizes course recommendations through behavioral analysis and machine learning.
+          </p>
+          <ul class="project-list">
+            <li>Designed a hybrid recommendation engine based on user preferences and interactions.</li>
+            <li>Built a full-stack architecture using Flask and React.</li>
+            <li>Improved user experience through adaptive content discovery.</li>
+          </ul>
+          <div class="tech">
+            <span>Flask</span>
+            <span>React.js</span>
+            <span>Python</span>
+            <span>Machine Learning</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <h3>ShopSmart</h3>
+            <span class="project-label">Mobile App</span>
+          </div>
+          <p>
+            A native Android e-commerce application with AI-powered product search, secure payments, and a complete shopping experience.
+          </p>
+          <ul class="project-list">
+            <li>Implemented natural language search using OpenAI-based capabilities.</li>
+            <li>Built shopping, orders, user profile, and delivery tracking features.</li>
+            <li>Used modern Android architecture for maintainability and better UX.</li>
+          </ul>
+          <div class="tech">
+            <span>Kotlin</span>
+            <span>Android Jetpack</span>
+            <span>OpenAI API</span>
+            <span>Retrofit</span>
+            <span>Stripe SDK</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <h3>Healthcare Payment Analytics Platform</h3>
+            <span class="project-label">BI & Data</span>
+          </div>
+          <p>
+            A decision-support platform for analyzing health insurance payment data through ETL pipelines, OLAP models, and interactive dashboards.
+          </p>
+          <ul class="project-list">
+            <li>Built the ETL workflow using Talend and designed a snowflake-schema data warehouse.</li>
+            <li>Created analytical cubes and MDX-ready structures using JasperServer and Mondrian.</li>
+            <li>Delivered dashboard-based KPI monitoring and drill-down analysis.</li>
+          </ul>
+          <div class="tech">
+            <span>Talend</span>
+            <span>Oracle</span>
+            <span>JasperServer</span>
+            <span>Mondrian</span>
+            <span>Google Data Studio</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-top">
+            <h3>Pharmacy Management System with Odoo ERP</h3>
+            <span class="project-label">ERP Solution</span>
+          </div>
+          <p>
+            A complete ERP-based digitalization of pharmacy operations covering stock, purchases, sales, accounting, CRM, and e-commerce.
+          </p>
+          <ul class="project-list">
+            <li>Configured core Odoo modules to streamline daily pharmacy operations.</li>
+            <li>Automated workflows for suppliers, stock reception, sales, and invoicing.</li>
+            <li>Connected business operations with analytics and online commerce features.</li>
+          </ul>
+          <div class="tech">
+            <span>Odoo 17</span>
+            <span>Inventory</span>
+            <span>Sales</span>
+            <span>POS</span>
+            <span>CRM</span>
+            <span>Accounting</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="section-title">
+        <h2>Professional Experience</h2>
+        <p>Hands-on experience delivering AI and full-stack solutions in a real development environment.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-top">
+              <div>
+                <h3>AI & Web Development Intern</h3>
+                <div class="timeline-role">NEXTRONIC • Casablanca, Morocco</div>
+              </div>
+              <div class="date">Jun 2025 – Aug 2025</div>
+            </div>
+            <ul>
+              <li>Developed an <strong>AI assistant for telemetry data analysis</strong> with a multi-session workflow.</li>
+              <li>Built a <strong>RAG pipeline using LangChain</strong> to support intelligent querying and contextual analysis.</li>
+              <li>Designed a complete full-stack architecture with <strong>React.js, Node.js, and PostgreSQL</strong>.</li>
+              <li>Implemented <strong>JWT-based authentication</strong> to secure user sessions and platform access.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="section-title">
+        <h2>Education & Certifications</h2>
+        <p>Academic background in engineering, supported by continuous technical learning and professional certifications.</p>
+      </div>
+
+      <div class="two-col">
+        <div class="edu-card">
+          <h3>Education</h3>
+          <div class="cert-list">
+            <div class="cert-item">
+              <strong>Engineering Degree in Computer Science & Emerging Technologies</strong>
+              École Nationale des Sciences Appliquées d’El Jadida<br />
+              2024 – Present
+            </div>
+            <div class="cert-item">
+              <strong>Integrated Preparatory Classes</strong>
+              École Nationale des Sciences Appliquées d’El Jadida<br />
+              2022 – 2024
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-card">
+          <h3>Certifications</h3>
+          <div class="cert-list">
+            <div class="cert-item">
+              <strong>Python for Data Science, AI & Development</strong>
+              IBM
+            </div>
+            <div class="cert-item">
+              <strong>SQL: A Practical Introduction for Querying Databases</strong>
+              IBM
+            </div>
+            <div class="cert-item">
+              <strong>C for Everyone: Programming Fundamentals</strong>
+              University of California
+            </div>
+            <div class="cert-item">
+              <strong>Advanced Git and GitHub Practices</strong>
+              Packt • 2026
+            </div>
+            <div class="cert-item">
+              <strong>Oracle Certified Professional: Java SE 17 Developer</strong>
+              Oracle • 2026
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leadership">
+      <div class="section-title">
+        <h2>Leadership & Volunteering</h2>
+        <p>Experience leading student initiatives, coordinating teams, and creating useful digital solutions inside the club environment.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-top">
+              <div>
+                <h3>Project Manager</h3>
+                <div class="timeline-role">University Club</div>
+              </div>
+              <div class="date">Current</div>
+            </div>
+            <ul>
+              <li>Led student technology projects from idea to execution.</li>
+              <li>Organized workshops and technical learning sessions for members.</li>
+              <li>Delivered practical training on <strong>Git and GitHub</strong>.</li>
+              <li>Contributed to digital services such as smoother <strong>membership and payment management</strong>.</li>
+              <li>Coordinated teams, timelines, and project follow-up across club activities.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>I am open to internships, collaborations, and opportunities to build meaningful software and AI solutions.</p>
+      </div>
+
+      <div class="contact-card">
+        <h3>Let’s connect</h3>
+        <div class="contact-list">
+          <div class="contact-item">
+            <strong>Email</strong>
+            <a href="mailto:Zakaria.Rebbah3@gmail.com">Zakaria.Rebbah3@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>GitHub</strong>
+            <a href="https://github.com/Zakaria-reb" target="_blank">github.com/Zakaria-reb</a>
+          </div>
+          <div class="contact-item">
+            <strong>LinkedIn</strong>
+            <a href="https://linkedin.com/in/zakaria-rebbah" target="_blank">linkedin.com/in/zakaria-rebbah</a>
+          </div>
+          <div class="contact-item">
+            <strong>Portfolio</strong>
+            <span>Add your deployed GitHub Pages link here</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built with GitHub Pages • © 2026 Zakaria Rebbah
+  </footer>
+</body>
+</html>
