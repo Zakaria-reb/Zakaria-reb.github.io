@@ -90,8 +90,8 @@
     .btn-cv svg { width: 13px; height: 13px; }
 
     /* HERO */
-    .hero { position: relative; z-index: 1; padding: 92px 0 72px; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 190px 340px; gap: 24px; align-items: start; }
+    .hero { position: relative; z-index: 1; padding: 60px 0 60px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: center; min-height: 86vh; }
 
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -415,6 +415,27 @@
     .foot-links a { color: var(--muted); font-size: 0.8rem; transition: color 0.18s; }
     .foot-links a:hover { color: var(--cyan2); }
 
+    /* HERO STATS + INFO */
+    .hero-stats {
+      display: flex; align-items: center; gap: 18px;
+      margin-top: 32px; padding: 18px 22px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+    .hstat { text-align: center; }
+    .hstat-n { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--cyan); line-height: 1; margin-bottom: 3px; }
+    .hstat-l { font-size: 0.75rem; color: var(--muted); }
+    .hstat-div { width: 1px; height: 32px; background: var(--border); flex-shrink: 0; }
+    .avail-inline { display: flex; align-items: center; gap: 7px; }
+
+    .hero-info {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+      margin-top: 14px; font-size: 0.83rem; color: var(--muted);
+    }
+    .hi-sep { color: var(--border); }
+    .hi-link { color: var(--muted2); transition: color 0.18s; }
+    .hi-link:hover { color: var(--cyan2); }
+
     /* ANIMATIONS */
     .fade { opacity: 0; transform: translateY(20px); animation: fadein 0.62s cubic-bezier(0.22,1,0.36,1) forwards; }
     @keyframes fadein { to { opacity: 1; transform: translateY(0); } }
@@ -422,37 +443,51 @@
     .d4{animation-delay:.38s}.d5{animation-delay:.48s}
 
     /* PHOTO */
+    .photo-col { position: relative; height: 100%; min-height: 500px; }
     .photo-wrap {
-      position: relative; width: 100%; padding-bottom: 110%;
-      border-radius: 18px; overflow: hidden;
+      position: sticky; top: 80px;
+      width: 100%; aspect-ratio: 3/4;
+      border-radius: 22px; overflow: hidden;
       border: 1px solid var(--border);
       background: var(--surface);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
     }
     .photo-wrap::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(180deg, transparent 55%, rgba(8,13,20,0.7) 100%);
+      background: linear-gradient(180deg, transparent 50%, rgba(8,13,20,0.85) 100%);
+    }
+    .photo-wrap::after {
+      content: ''; position: absolute; inset: 0; z-index: 0;
+      border-radius: 22px;
+      box-shadow: inset 0 0 0 1px rgba(34,211,238,0.08);
     }
     .photo-wrap img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover; object-position: center top;
       display: block;
     }
     .photo-badge {
-      position: absolute; bottom: 14px; left: 14px; right: 14px; z-index: 2;
-      background: rgba(8,13,20,0.82);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border);
-      border-radius: 10px; padding: 10px 14px;
-      display: flex; align-items: center; gap: 8px;
+      position: absolute; bottom: 18px; left: 16px; right: 16px; z-index: 2;
+      background: rgba(8,13,20,0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(34,211,238,0.12);
+      border-radius: 12px; padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
     }
     .photo-badge-dot {
-      width: 7px; height: 7px; border-radius: 50%;
+      width: 8px; height: 8px; border-radius: 50%;
       background: var(--cyan); flex-shrink: 0;
-      box-shadow: 0 0 7px rgba(34,211,238,0.7);
+      box-shadow: 0 0 8px rgba(34,211,238,0.8);
       animation: blink 2.2s ease-in-out infinite;
     }
-    .photo-badge-text { font-size: 0.78rem; color: var(--muted2); line-height: 1.3; }
-    .photo-badge-text strong { display: block; color: var(--text); font-weight: 500; font-size: 0.82rem; }
+    .photo-badge-text { font-size: 0.8rem; color: var(--muted2); line-height: 1.4; }
+    .photo-badge-text strong { display: block; color: var(--text); font-weight: 500; font-size: 0.85rem; }
+    .photo-glow {
+      position: absolute; bottom: -60px; left: 50%; transform: translateX(-50%);
+      width: 80%; height: 120px;
+      background: radial-gradient(ellipse, rgba(34,211,238,0.12) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
 
     /* RESPONSIVE */
     @media(max-width:960px){
@@ -483,7 +518,7 @@
       <h3>Curriculum Vitae</h3>
       <p>Téléchargez ou consultez le CV complet de Zakaria Rebbah.</p>
       <div class="modal-opts">
-        <div class="m-opt" onclick="window.open('https://zakaria-reb.github.io/cv_zr.pdf','_blank')">
+        <div class="m-opt" onclick="window.open('https://raw.githubusercontent.com/Zakaria-reb/Zakaria-reb.github.io/main/cv_zr.pdf','_blank')">
           <div class="m-icon mi-pdf">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -545,6 +580,8 @@
     <!-- HERO -->
     <section class="hero" id="home">
       <div class="hero-grid">
+
+        <!-- LEFT: TEXT + STATS -->
         <div>
           <div class="eyebrow fade d1">
             <span class="eyebrow-bar"></span>
@@ -575,12 +612,36 @@
               Voir CV
             </button>
           </div>
+
+          <!-- STATS ROW -->
+          <div class="hero-stats fade d5">
+            <div class="hstat"><div class="hstat-n">5+</div><div class="hstat-l">Projets</div></div>
+            <div class="hstat-div"></div>
+            <div class="hstat"><div class="hstat-n">RAG</div><div class="hstat-l">LangChain</div></div>
+            <div class="hstat-div"></div>
+            <div class="hstat"><div class="hstat-n">ML</div><div class="hstat-l">Deep Learning</div></div>
+            <div class="hstat-div"></div>
+            <div class="hstat avail-inline">
+              <div class="avail-dot"></div>
+              <div class="hstat-l" style="color:var(--cyan2)">Disponible</div>
+            </div>
+          </div>
+
+          <!-- QUICK INFO -->
+          <div class="hero-info fade d5">
+            <span class="hi-item">El Jadida, Maroc</span>
+            <span class="hi-sep">·</span>
+            <span class="hi-item">ENSA El Jadida</span>
+            <span class="hi-sep">·</span>
+            <a href="mailto:Zakaria.Rebbah3@gmail.com" class="hi-item hi-link">Zakaria.Rebbah3@gmail.com</a>
+          </div>
         </div>
 
-        <!-- PHOTO -->
-        <div class="fade d3">
+        <!-- RIGHT: BIG PHOTO -->
+        <div class="photo-col fade d3">
           <div class="photo-wrap">
             <img src="https://zakaria-reb.github.io/img1.png" alt="Zakaria Rebbah" />
+            <div class="photo-glow"></div>
             <div class="photo-badge">
               <div class="photo-badge-dot"></div>
               <div class="photo-badge-text">
@@ -591,43 +652,6 @@
           </div>
         </div>
 
-        <div class="hero-panel fade d4">
-          <div class="panel">
-            <div class="stats-2x2">
-              <div class="stat-box">
-                <div class="stat-n">5+</div>
-                <div class="stat-l">Projets IA, BI, web &amp; mobile</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-n">RAG</div>
-                <div class="stat-l">LangChain &amp; pipelines LLM</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-n">ML</div>
-                <div class="stat-l">Machine Learning &amp; Deep Learning</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-n">PM</div>
-                <div class="stat-l">Leadership &amp; gestion de projets</div>
-              </div>
-            </div>
-          </div>
-          <div class="panel">
-            <div class="avail">
-              <div class="avail-dot"></div>
-              Disponible pour stage &amp; collaborations
-            </div>
-          </div>
-          <div class="panel">
-            <div class="info-list">
-              <div class="info-row"><span class="lk">Localisation</span><span class="lv">El Jadida, Maroc</span></div>
-              <div class="info-row"><span class="lk">École</span><span class="lv">ENSA El Jadida</span></div>
-              <div class="info-row"><span class="lk">Email</span><span class="lv"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="80dae1ebe1f2e9e1aed2e5e2e2e1e8b3c0e7ede1e9ecaee3efed">[email&#160;protected]</a></span></div>
-              <div class="info-row"><span class="lk">GitHub</span><span class="lv">Zakaria-reb</span></div>
-              <div class="info-row"><span class="lk">LinkedIn</span><span class="lv">zakaria-rebbah</span></div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -946,7 +970,7 @@
             <div class="ca-headline">Prêt pour de nouveaux défis</div>
             <p class="ca-text">Je recherche des projets où l'IA et le génie logiciel créent un réel impact. N'hésitez pas à me contacter.</p>
           </div>
-          <button class="btn-cv-full" onclick="window.open('https://zakaria-reb.github.io/cv_zr.pdf','_blank')">
+          <button class="btn-cv-full" onclick="window.open('https://raw.githubusercontent.com/Zakaria-reb/Zakaria-reb.github.io/main/cv_zr.pdf','_blank')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14,2 14,8 20,8"/>
