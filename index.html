@@ -563,7 +563,7 @@
           </div>
         </div>
         <div class="modal-bar-actions">
-          <a class="modal-btn modal-btn-dl" href="https://raw.githubusercontent.com/Zakaria-reb/Zakaria-reb.github.io/main/cv_zr.pdf" download="CV_Zakaria_Rebbah.pdf" target="_blank">
+          <a class="modal-btn modal-btn-dl" href="https://zakaria-reb.github.io/cv_zr.pdf" download="CV_Zakaria_Rebbah.pdf" target="_blank">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7,10 12,15 17,10"/>
@@ -583,6 +583,7 @@
         <iframe
           id="cvIframe"
           src="https://drive.google.com/file/d/1iZ_E6E2Ab4d3T9fENZRN0McO2HM5lsqe/preview"
+          allow="autoplay"
           allowfullscreen
           onload="document.getElementById('pdfLoader').classList.add('hidden')"
         ></iframe>
@@ -624,17 +625,18 @@
         <div>
           <div class="eyebrow fade d1">
             <span class="eyebrow-bar"></span>
-            AI · Data · Computer Vision · Full-Stack
+            Dev Full-Stack · Data Sc · BI · Computer Vision
           </div>
           <h1 class="hero-name fade d2">
             <span class="n1">Zakaria</span>
             <span class="n2">Rebbah</span>
           </h1>
           <div class="role-tags fade d2">
-            <span class="rtag rtag-main">Intelligence Artificielle</span>
+            <span class="rtag rtag-main">Dev Full-Stack</span>
+            <span class="rtag">Data Science</span>
+            <span class="rtag">BI</span>
+            <span class="rtag">ERP</span>
             <span class="rtag">Computer Vision</span>
-            <span class="rtag">Data Science · BI</span>
-            <span class="rtag">Full-Stack Dev</span>
           </div>
           <p class="hero-desc fade d3">
             Je conçois des <strong>systèmes intelligents et des produits digitaux</strong> combinant
@@ -669,7 +671,7 @@
 
           <!-- QUICK INFO -->
           <div class="hero-info fade d5">
-            <span class="hi-item">El Jadida, Maroc</span>
+            <span class="hi-item">Casablanca-Settat, Maroc</span>
             <span class="hi-sep">·</span>
             <span class="hi-item">ENSA El Jadida</span>
             <span class="hi-sep">·</span>
@@ -1053,4 +1055,23 @@
         <a href="https://github.com/Zakaria-reb" target="_blank">GitHub</a>
         <a href="https://linkedin.com/in/zakaria-rebbah" target="_blank">LinkedIn</a>
         <a href="/cdn-cgi/l/email-protection#adf7ccc6ccdfc4cc83ffc8cfcfccc59eedcac0ccc4c183cec2c0">Email</a>
-      </d
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openModal() {
+      document.getElementById('cvModal').classList.add('open');
+    }
+    function closeModal() {
+      document.getElementById('cvModal').classList.remove('open');
+    }
+    document.getElementById('cvModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
